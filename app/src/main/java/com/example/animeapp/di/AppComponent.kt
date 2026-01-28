@@ -1,8 +1,8 @@
 package com.example.animeapp.di
 
-import android.app.Application
 import android.content.Context
 import com.example.animeapp.AnimeApplication
+import com.example.animeapp.ApplicationContext
 import dagger.Binds
 import dagger.BindsInstance
 import dagger.Component
@@ -18,14 +18,15 @@ import javax.inject.Singleton
         AnimeAppContextModule::class,
         AndroidInjectionModule::class,
         ViewModelFactoryModule::class,
-        ActivityBindingModule::class
+        ActivityBindingModule::class,
+        AnimeServiceModule::class
     ]
 )
 interface AppComponent : AndroidInjector<AnimeApplication> {
     @Component.Builder
     interface Builder {
         @BindsInstance
-        fun application(app: Application): Builder
+        fun application(app: AnimeApplication): Builder
 
         fun build(): AppComponent
     }
@@ -36,5 +37,6 @@ abstract class AnimeAppContextModule {
 
     @Singleton
     @Binds
-    abstract fun bindApplication(appController: AnimeApplication): Context
+    @ApplicationContext
+    abstract fun bindContext(appController: AnimeApplication): Context
 }
