@@ -1,6 +1,8 @@
 package com.example.animeapp.data.local
 
-/*
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
 @Entity(tableName = "anime")
 data class AnimeEntity(
     @PrimaryKey val id: Int,
@@ -10,4 +12,4 @@ data class AnimeEntity(
     val rating: Double?,
     val posterUrl: String?,
     val trailerUrl: String?
-)*/
+)

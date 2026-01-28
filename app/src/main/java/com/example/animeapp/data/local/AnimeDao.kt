@@ -1,4 +1,23 @@
 package com.example.animeapp.data.local
 
-class AnimeDao {
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+import kotlinx.coroutines.flow.Flow
+
+@Dao
+interface AnimeDao {
+
+    @Query("SELECT * FROM anime")
+    fun observeAnimeList(): Flow<List<AnimeEntity>>
+
+    @Query("SELECT * FROM anime WHERE id = :id")
+    fun observeAnime(id: Int): Flow<AnimeEntity?>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAll(list: List<AnimeEntity>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(entity: AnimeEntity)
 }

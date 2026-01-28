@@ -19,7 +19,8 @@ import javax.inject.Singleton
         AndroidInjectionModule::class,
         ViewModelFactoryModule::class,
         ActivityBindingModule::class,
-        AnimeServiceModule::class
+        AnimeServiceModule::class,
+        DatabaseModule::class
     ]
 )
 interface AppComponent : AndroidInjector<AnimeApplication> {
