@@ -15,11 +15,11 @@ Project structure
 
 🛠 Tech Stack
 
--Language: Kotlin
+- Language: Kotlin
 
--Architecture: MVVM (Model–View–ViewModel)
+- Architecture: MVVM (Model–View–ViewModel)
 
--UI: Material Components and Compose
+- UI: Material Components and Compose
 
 - Networking: Retrofit + OkHttp
 
@@ -31,13 +31,13 @@ Project structure
 
 📌 Assumptions Made
 
--Users may have a stable internet connection to fetch anime data from the API if not show a toast and emoji.
+- Users may have a stable internet connection to fetch anime data from the API if not show a toast and emoji.
 
--The backend API returns valid and consistent responses.
+- The backend API returns valid and consistent responses.
 
--Error states (network/API failures) are handled gracefully with fallback UI messages.
+- Error states (network/API failures) are handled gracefully with fallback UI messages.
 
--The project focuses on functionality and architecture rather than exhaustive UI animations.
+- The project focuses on functionality and architecture rather than exhaustive UI animations.
 
 ✨ Features Implemented
 
@@ -62,7 +62,7 @@ Known Limitations
 - ❌ UI animations are minimal
 
 
-👨👨‍💻 Author
-Anoop Kumar Mittapelli
-Android Developer
+👨👨‍💻 Author 
+Anoop Kumar Mittapelli 
+Android Developer 
 GitHub: https://github.com/Anoop0712
