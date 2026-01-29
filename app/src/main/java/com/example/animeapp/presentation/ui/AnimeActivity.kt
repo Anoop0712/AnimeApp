@@ -61,7 +61,7 @@ class AnimeActivity : DaggerAppCompatActivity() {
                         AnimeNavGraph(viewModel = animeViewmodel)
 
                         LaunchedEffect(Unit) {
-                            animeViewmodel.startLoad()
+                            animeViewmodel.startListLoad()
                             delay(1000)
                             animeViewmodel.loadAnimeList()
                         }

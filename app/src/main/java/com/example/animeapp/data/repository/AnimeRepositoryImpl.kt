@@ -57,7 +57,7 @@ class AnimeRepositoryImpl @Inject constructor(
                     val result = topAnimeDataConverter.apply(it)
                     if (result is ResponseState.Success) {
                         animeDataSource.clearAll()
-                        animeDataSource.insertAll(animeToAnimeEntityConverter.fromApiList(result.data))
+                        animeDataSource.insertAll(animeToAnimeEntityConverter.fromApiList(result.data, false))
                     }
                     result
                 }
@@ -75,7 +75,7 @@ class AnimeRepositoryImpl @Inject constructor(
         }
             .flatMapLatest { cachedAnime ->
                 if (cachedAnime == null ||
-                    (isDataExpired(cachedAnime.lastUpdated))
+                    isDataExpired(cachedAnime.lastUpdated) || (!cachedAnime.isUpdated && isNetworkAvailable())
                 ) {
                     flow {
                         emit(
@@ -86,7 +86,7 @@ class AnimeRepositoryImpl @Inject constructor(
                     }.map { response ->
                         val result = singleAnimeDataConverter.apply(response)
                         if (result is ResponseState.Success) {
-                            animeDataSource.insert(animeToAnimeEntityConverter.fromApi(result.data))
+                            animeDataSource.insert(animeToAnimeEntityConverter.fromApi(result.data, true))
                         }
                         result
                     }

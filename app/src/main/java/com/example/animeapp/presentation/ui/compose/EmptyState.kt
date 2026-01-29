@@ -16,6 +16,6 @@ fun EmptyState() {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text("No anime found 😢", color = Color.Black)
+        Text("No anime found 😢", color = Color.White)
     }
 }

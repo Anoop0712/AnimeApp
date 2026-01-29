@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class AnimeToAnimeEntityConverter @Inject constructor() {
 
-    fun fromApi(anime: Anime): AnimeEntity {
+    fun fromApi(anime: Anime, isUpdated: Boolean): AnimeEntity {
         return AnimeEntity(
             animeId = anime.id,
             title = anime.title,
@@ -16,10 +16,11 @@ class AnimeToAnimeEntityConverter @Inject constructor() {
             synopsis = anime.synopsis,
             rank = anime.rank,
             rating = anime.rating,
-            trailerUrl = anime.trailerUrl
+            trailerUrl = anime.trailerUrl,
+            isUpdated = isUpdated
         )
     }
 
-    fun fromApiList(animeList: List<Anime>): List<AnimeEntity> =
-        animeList.map { fromApi(it) }
+    fun fromApiList(animeList: List<Anime>, isUpdated: Boolean): List<AnimeEntity> =
+        animeList.map { fromApi(it, isUpdated = isUpdated) }
 }
