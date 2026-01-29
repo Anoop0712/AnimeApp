@@ -62,6 +62,9 @@ Known Limitations
 
 - ❌ UI animations are minimal
 
+Apk:
+https://github.com/Anoop0712/AnimeApp/releases/tag/v1.0.0
+
 
 👨👨‍💻 Author 
 Anoop Kumar Mittapelli 
