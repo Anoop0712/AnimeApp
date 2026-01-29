@@ -5,13 +5,14 @@ The project demonstrates scalable architecture, API integration, and best practi
 
 🔗 Repository: https://github.com/Anoop0712/AnimeApp
 
-Project structure
+```Project structure
 │
 ├── data        # API, models, repositories, local data source
 ├── domain      # Business logic
 ├── ui          # Activities/ViewModels/Compose
 ├── di          # Dagger modules
 └── utils       # Helpers and extensions
+```
 
 🛠 Tech Stack
 
