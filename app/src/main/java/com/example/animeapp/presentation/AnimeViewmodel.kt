@@ -15,20 +15,20 @@ import javax.inject.Inject
 class AnimeViewmodel @Inject constructor(
     private val repository: AnimeRepository
 ): ViewModel() {
-    private val mutableXlpState =
+    private val mutableAnimeState =
         MutableStateFlow(AnimeState())
-    val xlpState: StateFlow<AnimeState> get() = mutableXlpState
+    val animeState: StateFlow<AnimeState> get() = mutableAnimeState
 
     fun loadAnimeList() {
         viewModelScope.launch {
             repository.getTopAnime().collect { state ->
                 when (state) {
                     is ResponseState.Loading -> {
-                        mutableXlpState.update { it.copy(isListScreenLoading = true) }
+                        mutableAnimeState.update { it.copy(isListScreenLoading = true) }
                     }
 
                     is ResponseState.Success -> {
-                        mutableXlpState.update {
+                        mutableAnimeState.update {
                             it.copy(
                                 isListScreenLoading = false,
                                 listScreenError = null,
@@ -38,7 +38,7 @@ class AnimeViewmodel @Inject constructor(
                     }
 
                     is ResponseState.Error -> {
-                        mutableXlpState.update {
+                        mutableAnimeState.update {
                             it.copy(
                                 isListScreenLoading = false,
                                 listScreenError = state.errorType
@@ -59,19 +59,19 @@ class AnimeViewmodel @Inject constructor(
             repository.getAnimeDetail(id).collect { state ->
                 when (state) {
                     is ResponseState.Loading -> {
-                        mutableXlpState.update { it.copy(isDetailScreenLoading = true) }
+                        mutableAnimeState.update { it.copy(isDetailScreenLoading = true) }
                     }
 
                     is ResponseState.Success -> {
                         if (state.data == Anime()) {
-                            mutableXlpState.update {
+                            mutableAnimeState.update {
                                 it.copy(
                                     isDetailScreenLoading = false,
                                     detailScreenError = ErrorType.NO_DATA
                                 )
                             }
                         } else {
-                            mutableXlpState.update {
+                            mutableAnimeState.update {
                                 it.copy(
                                     isDetailScreenLoading = false,
                                     detailScreenError = null,
@@ -83,7 +83,7 @@ class AnimeViewmodel @Inject constructor(
                     }
 
                     is ResponseState.Error -> {
-                        mutableXlpState.update {
+                        mutableAnimeState.update {
                             it.copy(
                                 isDetailScreenLoading = false,
                                 detailScreenError = state.errorType
@@ -97,6 +97,10 @@ class AnimeViewmodel @Inject constructor(
                 }
             }
         }
+    }
+
+    fun startLoad() {
+        mutableAnimeState.update { it.copy(isListScreenLoading = true) }
     }
 }
 

@@ -5,16 +5,15 @@ import android.os.Build
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
-import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
@@ -27,17 +26,23 @@ import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.view.WindowCompat
+import androidx.lifecycle.ViewModelProvider
 import com.example.animeapp.presentation.AnimeViewmodel
+import com.example.animeapp.presentation.ui.compose.StatusBarColor
 import dagger.android.AndroidInjection
 import dagger.android.support.DaggerAppCompatActivity
+import kotlinx.coroutines.delay
+import javax.inject.Inject
 import kotlin.getValue
 
 class AnimeActivity : DaggerAppCompatActivity() {
 
-    private val animeViewmodel: AnimeViewmodel by viewModels()
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    private val animeViewmodel: AnimeViewmodel by viewModels { viewModelFactory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,15 +50,21 @@ class AnimeActivity : DaggerAppCompatActivity() {
 
         setContent {
             AppTheme {
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(horizontal = 8.dp),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text("hello world")
-                    LaunchedEffect(Unit) {
-                        animeViewmodel.loadAnimeList()
+                StatusBarColor { safeDrawingPadding ->
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(safeDrawingPadding)
+                            .background(Color.White),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        AnimeNavGraph(viewModel = animeViewmodel)
+
+                        LaunchedEffect(Unit) {
+                            animeViewmodel.startLoad()
+                            delay(1000)
+                            animeViewmodel.loadAnimeList()
+                        }
                     }
                 }
             }
@@ -62,25 +73,47 @@ class AnimeActivity : DaggerAppCompatActivity() {
 }
 
 
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
-
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
-
+val Black = Color(0xFF000000)
+val DarkGray = Color(0xFF121212)
+val MediumGray = Color(0xFF1E1E1E)
+val LightGray = Color(0xFF2A2A2A)
+val LighterGray = Color(0xFF3A3A3A)
+val White = Color(0xFFFFFFFF)
+val Red = Color(0xFFE50914)
+val RedDark = Color(0xFFB20710)
+val Gray = Color(0xFF868686)
+val Silver = Color(0xFFB3B3B3)
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
-)
-
-private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
+    primary = Red,
+    onPrimary = White,
+    primaryContainer = RedDark,
+    onPrimaryContainer = White,
+    secondary = MediumGray,
+    onSecondary = White,
+    secondaryContainer = LightGray,
+    onSecondaryContainer = White,
+    tertiary = LighterGray,
+    onTertiary = Black,
+    tertiaryContainer = LightGray,
+    onTertiaryContainer = Black,
+    background = Black,
+    onBackground = White,
+    surface = DarkGray,
+    onSurface = White,
+    surfaceVariant = MediumGray,
+    onSurfaceVariant = Silver,
+    error = Red,
+    onError = White,
+    errorContainer = RedDark,
+    onErrorContainer = White,
+    outline = Gray,
+    outlineVariant = LightGray,
+    scrim = Black,
+    surfaceTint = Red,
+    inverseSurface = White,
+    inverseOnSurface = Black,
+    inversePrimary = RedDark,
 )
 
 val Typography = androidx.compose.material3.Typography(
@@ -105,7 +138,7 @@ fun AppTheme(
             if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
         darkTheme -> DarkColorScheme
-        else -> LightColorScheme
+        else -> DarkColorScheme
     }
     val view = LocalView.current
     if (!view.isInEditMode) {
