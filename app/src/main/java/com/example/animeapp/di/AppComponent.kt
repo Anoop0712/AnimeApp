@@ -20,7 +20,8 @@ import javax.inject.Singleton
         ViewModelFactoryModule::class,
         ActivityBindingModule::class,
         AnimeServiceModule::class,
-        DatabaseModule::class
+        DatabaseModule::class,
+        DispatchersModule::class
     ]
 )
 interface AppComponent : AndroidInjector<AnimeApplication> {

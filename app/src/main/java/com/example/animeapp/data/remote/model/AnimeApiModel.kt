@@ -16,7 +16,7 @@ data class AnimeData(
     val images: AnimeImages?,
     val trailer: AnimeTrailer?,
     val approved: Boolean?,
-    val title: String?,
+    val titles: List<Title>?,
     val type: String?,
     val source: String?,
     val episodes: Int?,
@@ -38,9 +38,6 @@ data class AnimeData(
     val licensors: List<CommonObject>?,
     val studios: List<CommonObject>?,
     val genres: List<Genre>?,
-    @SerializedName("title_english") val titleEnglish: String?,
-    @SerializedName("title_japanese") val titleJapanese: String?,
-    @SerializedName("title_synonyms") val titleSynonyms: List<String>?,
     @SerializedName("scored_by") val scoredBy: Int?,
     @SerializedName("explicit_genres") val explicitGenres: List<Genre>?
 )
@@ -50,7 +47,7 @@ data class AnimeImages(
 )
 
 data class ImageUrlData(
-    @SerializedName("image_url") val imageUrl: String,
+    @SerializedName("image_url") val imageUrl: String?,
     @SerializedName("small_image_url") val smallImageUrl: String,
     @SerializedName("large_image_url") val largeImageUrl: String?
 )
@@ -62,7 +59,7 @@ data class AnimeTrailer(
 )
 
 data class Genre(
-    @SerializedName("mal_id") val malId: Int,
+    @SerializedName("mal_id") val malId: Int?,
     val type: String?,
     val name: String,
     val url: String?
@@ -76,8 +73,13 @@ data class Broadcast(
 )
 
 data class CommonObject(
-    @SerializedName("mal_id") val malId: Int,
+    @SerializedName("mal_id") val malId: Int?,
     val type: String?,
     val name: String,
     val url: String?
+)
+
+data class Title(
+    val type: String?,
+    val title: String?
 )
