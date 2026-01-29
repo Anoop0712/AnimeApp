@@ -11,5 +11,7 @@ data class Anime(
     val posterUrl: String = "",
     val trailerUrl: String = "",
     val genres: List<String> = emptyList(),
-    val cast: List<String> = emptyList()
+    val cast: List<String> = emptyList(),
+    val rank: Int = 0,
+    val score: Double = 0.0
 )

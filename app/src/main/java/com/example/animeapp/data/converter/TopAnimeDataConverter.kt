@@ -23,7 +23,9 @@ class TopAnimeDataConverter @Inject constructor() {
                         episodes = data.episodes ?: 0,
                         rating = data.score ?: 0.0,
                         posterUrl = data.images?.jpgFormat?.imageUrl.orEmpty(),
-                        trailerUrl = data.trailer?.url.orEmpty()
+                        trailerUrl = data.trailer?.url.orEmpty(),
+                        rank = data.rank ?: 0,
+                        score = data.score ?: 0.0
                     )
                 }
             )

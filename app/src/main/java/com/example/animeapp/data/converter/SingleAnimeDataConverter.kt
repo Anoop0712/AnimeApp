@@ -17,7 +17,9 @@ class SingleAnimeDataConverter @Inject constructor() {
                     episodes = response.data.episodes ?: 0,
                     rating = response.data.score ?: 0.0,
                     posterUrl = response.data.images?.jpgFormat?.imageUrl.orEmpty(),
-                    trailerUrl = response.data.trailer?.url.orEmpty()
+                    trailerUrl = response.data.trailer?.url.orEmpty(),
+                    rank = response.data.rank ?: 0,
+                    score = response.data.score ?: 0.0
                 )
             )
         } else {
