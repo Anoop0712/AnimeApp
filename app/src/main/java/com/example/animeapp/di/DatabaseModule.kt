@@ -2,7 +2,7 @@ package com.example.animeapp.di
 
 import android.content.Context
 import com.example.animeapp.data.local.AnimeDao
-import com.example.animeapp.data.local.AnimeRoomDbRepository
+import com.example.animeapp.data.local.AnimeRoomDbRepositoryImpl
 import com.example.animeapp.data.local.AppDatabase
 import dagger.Module
 import dagger.Provides
@@ -23,7 +23,7 @@ class DatabaseModule {
     }
 
     @Provides
-    fun provideRecentlyViewedRepository(animeDao: AnimeDao): AnimeRoomDbRepository {
-        return AnimeRoomDbRepository(animeDao)
+    fun provideRecentlyViewedRepository(animeDao: AnimeDao): AnimeRoomDbRepositoryImpl {
+        return AnimeRoomDbRepositoryImpl(animeDao)
     }
 }

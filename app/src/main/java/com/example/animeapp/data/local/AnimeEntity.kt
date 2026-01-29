@@ -15,7 +15,6 @@ data class AnimeEntity(
     val score: Double?,
     val rank: Int?,
     val rating: Double?,
-    val cast: List<String>?,
     val posterUrl: String?,
     val trailerUrl: String?,
     @ColumnInfo(name = "last_updated")

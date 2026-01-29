@@ -12,8 +12,8 @@ interface AnimeDao {
     @Query("SELECT * FROM anime ORDER BY score DESC")
     fun observeAnimeList(): Flow<List<AnimeEntity>>
 
-    @Query("SELECT * FROM anime WHERE anime_id = :id")
-    fun observeAnime(id: Int): Flow<AnimeEntity?>
+    @Query("SELECT * FROM anime WHERE anime_id = :animeId")
+    suspend fun getAnimeById(animeId: Int): AnimeEntity?
 
     @Query("DELETE FROM anime")
     suspend fun clearAll()

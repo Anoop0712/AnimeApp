@@ -1,6 +1,6 @@
 package com.example.animeapp.di
 
-import com.example.animeapp.MainActivity
+import com.example.animeapp.presentation.ui.AnimeActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import javax.inject.Scope
@@ -10,11 +10,11 @@ import javax.inject.Scope
 annotation class ActivityScoped
 
 
-@Module
+@Module(includes = [ViewModelModule::class])
 abstract class ActivityBindingModule {
 
     @ActivityScoped
     @ContributesAndroidInjector
-    abstract fun bindMainActivity(): MainActivity
+    abstract fun bindAnimeActivity(): AnimeActivity
 
 }

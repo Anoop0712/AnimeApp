@@ -17,7 +17,6 @@ import javax.inject.Singleton
         AppModule::class,
         AnimeAppContextModule::class,
         AndroidInjectionModule::class,
-        ViewModelFactoryModule::class,
         ActivityBindingModule::class,
         AnimeServiceModule::class,
         DatabaseModule::class,
