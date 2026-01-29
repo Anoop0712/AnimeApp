@@ -32,8 +32,7 @@ class AnimeRepositoryImpl @Inject constructor(
     }
 
     override fun getAnimeDetail(id: Int): Flow<ResponseState<Anime>> {
-        val url = "url"
-        return flow { emit(animeFetcher.getAnimeDetailById(url)) }
+        return flow { emit(animeFetcher.getAnimeDetailById("https://api.jikan.moe/v4/anime/$id")) }
             .map { singleAnimeDataConverter.apply(it) }
             .onError(ErrorHandler())
             .startFlow(ResponseState.Loading)
