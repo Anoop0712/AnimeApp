@@ -17,7 +17,8 @@ class AnimeToAnimeEntityConverter @Inject constructor() {
             rank = anime.rank,
             rating = anime.rating,
             trailerUrl = anime.trailerUrl,
-            isUpdated = isUpdated
+            isUpdated = isUpdated,
+            genres = anime.genres
         )
     }
 

@@ -141,13 +141,12 @@ fun RatingChip(score: Double?) {
 fun InfoChip(text: String) {
     Box(
         modifier = Modifier
-            .clip(RoundedCornerShape(12.dp))
-            .border(1.dp, Color.White.copy(alpha = 0.6f))
+            .background(Color.White.copy(alpha = 0.6f), RoundedCornerShape(12.dp))
             .padding(horizontal = 10.dp, vertical = 4.dp)
     ) {
         Text(
             text = text,
-            color = Color.White,
+            color = Color.Black,
             fontSize = 13.sp
         )
     }

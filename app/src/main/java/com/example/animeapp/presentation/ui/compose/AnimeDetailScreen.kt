@@ -285,13 +285,15 @@ fun AnimeSynopsis(text: String?) {
 }
 
 @Composable
-fun AnimeGenres(genres: List<String>) {
+fun AnimeGenres(genres: String) {
+    if (genres.isBlank()) return
+    val listOfGenres = genres.split("_")
     FlowRow(
         modifier = Modifier.padding(16.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        genres.forEach {
+        listOfGenres.forEach {
             InfoChip(it)
         }
     }

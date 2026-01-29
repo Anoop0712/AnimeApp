@@ -19,7 +19,8 @@ class SingleAnimeDataConverter @Inject constructor() {
                     posterUrl = response.data.images?.jpgFormat?.imageUrl.orEmpty(),
                     trailerUrl = response.data.trailer?.url ?: response.data.trailer?.embedUrl.orEmpty(),
                     rank = response.data.rank ?: 0,
-                    score = response.data.score ?: 0.0
+                    score = response.data.score ?: 0.0,
+                    genres = response.data.genres?.joinToString("_") { it.name }.orEmpty()
                 )
             )
         } else {

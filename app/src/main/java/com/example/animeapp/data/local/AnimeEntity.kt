@@ -17,6 +17,7 @@ data class AnimeEntity(
     val rating: Double?,
     val posterUrl: String?,
     val trailerUrl: String?,
+    val genres: String?,
     val isUpdated: Boolean,
     @ColumnInfo(name = "last_updated")
     val lastUpdated: Long = System.currentTimeMillis()

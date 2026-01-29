@@ -10,7 +10,7 @@ data class Anime(
     val rating: Double = 0.0,
     val posterUrl: String = "",
     val trailerUrl: String = "",
-    val genres: List<String> = emptyList(),
+    val genres: String = "",
     val rank: Int = 0,
     val score: Double = 0.0
 )

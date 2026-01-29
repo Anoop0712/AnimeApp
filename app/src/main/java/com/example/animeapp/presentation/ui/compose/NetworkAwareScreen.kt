@@ -12,7 +12,8 @@ import com.example.animeapp.utils.NetworkState
 
 @Composable
 fun NetworkToastHandler(
-    networkState: NetworkState
+    networkState: NetworkState,
+    trigger: (NetworkState?) -> Unit
 ) {
     val context = LocalContext.current
 
@@ -32,6 +33,8 @@ fun NetworkToastHandler(
                     Toast.LENGTH_LONG
                 )
                 .show()
+        } else {
+            trigger(lastState)
         }
 
         lastState = networkState

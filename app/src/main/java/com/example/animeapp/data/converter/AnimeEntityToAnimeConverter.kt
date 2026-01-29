@@ -16,7 +16,8 @@ class AnimeEntityToAnimeConverter @Inject constructor() {
             rating = entity.rating ?: 0.0,
             posterUrl = entity.posterUrl.orEmpty(),
             trailerUrl = entity.trailerUrl.orEmpty(),
-            rank = entity.rank ?: 0
+            rank = entity.rank ?: 0,
+            genres = entity.genres ?: ""
         )
     }
 

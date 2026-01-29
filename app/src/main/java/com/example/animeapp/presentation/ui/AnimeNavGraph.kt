@@ -20,7 +20,13 @@ fun AnimeNavGraph(
     viewModel: AnimeViewmodel
 ) {
     val animeState by viewModel.animeState.collectAsStateWithLifecycle()
-    NetworkToastHandler(animeState.networkState)
+    NetworkToastHandler(animeState.networkState) { networkState ->
+        networkState?.let {
+            if (animeState.animeList.isEmpty()) {
+                viewModel.loadAnimeList()
+            }
+        }
+    }
     NavHost(navController, startDestination = "list") {
         composable("list") { AnimeListScreen(navController, viewModel) }
         composable(

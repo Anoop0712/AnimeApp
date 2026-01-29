@@ -25,7 +25,8 @@ class TopAnimeDataConverter @Inject constructor() {
                         posterUrl = data.images?.jpgFormat?.imageUrl.orEmpty(),
                         trailerUrl = data.trailer?.url ?: data.trailer?.embedUrl.orEmpty(),
                         rank = data.rank ?: 0,
-                        score = data.score ?: 0.0
+                        score = data.score ?: 0.0,
+                        genres = data.genres?.joinToString("_") { it.name }.orEmpty()
                     )
                 }
             )
